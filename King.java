@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class King extends Piece {
+    public King(Square square, Color color) {
+        super(square, color);
+    }
+
+    @Override
+    public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
+        ArrayList<Square> validMoves = new ArrayList<>();
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+                Square newSquare = new Square(square, i, j);
+                if (isValid(newSquare) && currBoard.getPiece(newSquare).getColor() != this.getColor()) {
+                    validMoves.add(newSquare);
+                }
+            }
+        }
+        return validMoves;
+    }
+}
