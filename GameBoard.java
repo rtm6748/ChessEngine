@@ -139,6 +139,14 @@ public class GameBoard{
 
     @Override
     public String toString() {
-        return super.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < boardSize; ++i) {
+            for (int j = 0; j < boardSize; ++j) {
+                stringBuilder.append(board[i][j].toString());
+                stringBuilder.append(' ');
+            }
+            stringBuilder.append('\n');
+        }
+        return stringBuilder.toString();
     }
 }
