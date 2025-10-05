@@ -21,7 +21,7 @@ public class Queen extends Piece {
                 if (newPiece.getColor() == this.getColor()) {
                     break;
                 }
-                if (newPiece.getColor() != Color.NONE && newPiece.getColor() != this.getColor()) {
+                if (newPiece.getColor() != this.getColor()) {
                     validMoves.add(newSquare);
                     break;
                 }
@@ -32,4 +32,9 @@ public class Queen extends Piece {
         return validMoves;
     }
 
+
+    @Override
+    public String toString() {
+        return getColor() == Color.WHITE ? "♛" : "♕";
+    }
 }

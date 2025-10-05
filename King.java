@@ -21,4 +21,10 @@ public class King extends Piece {
         }
         return validMoves;
     }
+
+
+    @Override
+    public String toString() {
+        return getColor() == Color.WHITE ? "♚" : "♔";
+    }
 }
