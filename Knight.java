@@ -16,9 +16,15 @@ public class Knight extends Piece {
                     continue;
                 }
                 Square newSquare = new Square(square, MovesX[i], MovesY[j]);
-                if (isValid(newSquare) && currBoard.getPiece(newSquare).getColor() != this.getColor()) {
-                    validMoves.add(newSquare);
+                if (!isValid(newSquare)) {
+                    continue;
                 }
+                if (currBoard.getPiece(newSquare).getClass() != Empty.class) {
+                    if (currBoard.getPiece(newSquare).getColor() == this.getColor()) {
+                        continue;
+                    }
+                }
+                validMoves.add(newSquare);
             }
         }
         return validMoves;
