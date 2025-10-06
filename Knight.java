@@ -28,7 +28,7 @@ public class Knight extends Piece {
         ArrayList<Square> validMoves = new ArrayList<>();
         for (int i = 0; i < MovesX.length; ++i) {
             for (int j = 0; j < MovesY.length; ++j) {
-                if (i == j) {
+                if (Math.abs(MovesX[i]) == Math.abs(MovesY[j])) {
                     continue;
                 }
                 Square newSquare = new Square(square, MovesX[i], MovesY[j]);

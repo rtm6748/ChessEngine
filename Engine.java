@@ -37,6 +37,9 @@ public class Engine {
     public Move findNextMove(ChessGame chessGame, Move firstMove, int depth, boolean low1, boolean low2) {
         HashMap<Piece, ArrayList<Square>> moves = this.chessGame.getGameBoard().getValidMoves(this.chessGame.getCurrentColor());
         PositionValue positionValue = evaluatePosition(chessGame);
+        Double highestVal = null;
+        Piece highestPiece = null;
+        Square highestSquare = null;
         for (Piece piece : moves.keySet()) {
             for (Square square : moves.get(piece)) {
                 if (firstMove == null) {
@@ -45,17 +48,26 @@ public class Engine {
                 ChessGame currGame = chessGame.getCopy();
                 currGame.move(piece, square);
                 PositionValue thisPosition = evaluatePosition(currGame);
-                if (thisPosition.getDifference() < positionValue.getDifference()) {
-                    if (low1) {
-                        if (low2) {
-                            return null;
-                        }
-                        return findNextMove(currGame, firstMove, depth - 1, true, true);
-                    }
-                    return findNextMove(currGame, firstMove, depth - 1, true, false);
+                if (highestVal == null || thisPosition.getDifference() > highestVal) {
+                    highestVal = thisPosition.getDifference();
+                    highestPiece = piece;
+                    highestSquare = square;
                 }
-                return findNextMove(currGame, firstMove, depth - 1, false, false);
+
+                if (depth != 0) {
+                    if (thisPosition.getDifference() < positionValue.getDifference()) {
+                        if (low1) {
+                            if (low2) {
+                                return null;
+                            }
+                            return findNextMove(currGame, firstMove, depth - 1, true, true);
+                        }
+                        return findNextMove(currGame, firstMove, depth - 1, true, false);
+                    }
+                    return findNextMove(currGame, firstMove, depth - 1, false, false);
+                }
             }
         }
+        return new Move(highestPiece, highestSquare);
     }
 }

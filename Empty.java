@@ -6,9 +6,16 @@ public class Empty extends Piece {
         super(square, color);
     }
 
+
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         return new ArrayList<>();
+    }
+
+    @Override
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
+        return 0;
     }
 
 
