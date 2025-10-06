@@ -17,7 +17,7 @@ public class Pawn extends Piece{
             validMoves.add(forward1);
             Square forward2 = new Square(this.getCurrSquare(), 0, 2 * forwardOrBackward);
             boolean onStart = this.getCurrSquare().getY() == 1 && this.getColor() == Color.WHITE ||
-                              this.getCurrSquare().getY() == 7 && this.getColor() == Color.BLACK;
+                              this.getCurrSquare().getY() == 6 && this.getColor() == Color.BLACK;
             if (isValid(forward1) && currBoard.getPiece(forward2).getClass() == Empty.class && onStart) {
                 validMoves.add(forward2);
             }

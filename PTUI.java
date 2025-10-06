@@ -13,7 +13,7 @@ public class PTUI {
             while (!success) {
                 Scanner scanner = new Scanner(System.in);
                 String nextMove = scanner.nextLine();
-                String[] nextMoveSplit = nextMove.split("\\s+");
+                String[] nextMoveSplit = nextMove.strip().split("\\s+");
                 int[] intMove = {0, 0, 0, 0};
                 for (int i = 0; i < 4; ++i) {
                     intMove[i] = Integer.parseInt(nextMoveSplit[i]);
@@ -21,6 +21,10 @@ public class PTUI {
                 Piece currPiece = game.getPiece(new Square(intMove[0], intMove[1]));
                 success = game.move(currPiece, new Square(intMove[2], intMove[3]));
                 if (success) {
+                    System.out.println(game.getGameBoard());
+                }
+                else {
+                    System.out.println(game.getGameBoard().getPiece(new Square(intMove[0], intMove[1])));
                     System.out.println(game.getGameBoard());
                 }
             }
