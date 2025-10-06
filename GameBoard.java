@@ -113,19 +113,21 @@ public class GameBoard{
                 }
                 boolean invalidMove = false;
                 for (Piece otherPiece : otherPiecesMoves.keySet()) {
-                    for (Square otherSquare : piecesMoves.get(otherPiece)) {
-                        if (currKing.getCurrSquare() == otherSquare) {
-                            ArrayList<Square> updatedMoves = piecesMoves.get(piece);
-                            piecesMoves.remove(piece, piecesMoves.get(piece));
-                            updatedMoves.remove(intSquare);
-                            piecesMoves.put(piece, updatedMoves);
-                            --intSquare;
-                            invalidMove = true;
+                    if (piecesMoves.get(otherPiece) != null) {
+                        for (Square otherSquare : piecesMoves.get(otherPiece)) {
+                            if (currKing.getCurrSquare() == otherSquare) {
+                                ArrayList<Square> updatedMoves = piecesMoves.get(piece);
+                                piecesMoves.remove(piece, piecesMoves.get(piece));
+                                updatedMoves.remove(intSquare);
+                                piecesMoves.put(piece, updatedMoves);
+                                --intSquare;
+                                invalidMove = true;
+                                break;
+                            }
+                        }
+                        if (invalidMove) {
                             break;
                         }
-                    }
-                    if (invalidMove) {
-                        break;
                     }
                 }
 
