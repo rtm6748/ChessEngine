@@ -16,5 +16,9 @@ public class PTUI {
         }
         Piece currPiece = game.getPiece(new Square(intMove[0], intMove[1]));
         boolean success = game.move(currPiece, new Square(intMove[2], intMove[3]));
+        if (success) {
+            System.out.println(game.getGameBoard());
+        }
+        System.out.println("bad");
     }
 }

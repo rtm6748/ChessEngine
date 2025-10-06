@@ -18,4 +18,13 @@ public class Square {
     public int getY() {
         return y;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Square square) {
+            return this.getX() == square.getX() && this.getY() == square.getY();
+        }
+        return false;
+    }
 }
