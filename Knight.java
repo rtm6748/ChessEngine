@@ -1,8 +1,24 @@
 import java.util.ArrayList;
 
 public class Knight extends Piece {
+
     public Knight(Square square, Color color) {
         super(square, color);
+    }
+
+    public double getValue() {
+        double val = 3.0;
+        double distanceForwardMult = 0.3;
+        double centeredMult = 0.2;
+        Color color = this.getColor();
+        if (color == Color.BLACK) {
+            int x = this.getCurrSquare().getX();
+            int y = this.getCurrSquare().getY();
+            val += (7 - y) * distanceForwardMult;
+            val += Math.abs(3.5 - x) * centeredMult;
+            val += Math.abs(3.5 - y) * centeredMult;
+        }
+        return val;
     }
 
     @Override

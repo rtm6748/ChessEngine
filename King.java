@@ -5,6 +5,12 @@ public class King extends Piece {
         super(square, color);
     }
 
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
+        double val = 1000;
+        double edgePreference = 0.2;
+        val += Math.abs(3.5 - this.getCurrSquare().getY()) * edgePreference;
+    }
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         ArrayList<Square> validMoves = new ArrayList<>();

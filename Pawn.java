@@ -5,6 +5,66 @@ public class Pawn extends Piece{
         super(square, color);
     }
 
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
+        //TODO this finished along with other pieces
+
+        double val = 1;
+        double valPerPieceDefended = 0.4;
+        double valPerPieceAttacked = 0.3;
+        double valDefendedByPawn = 0.3;
+        int black = -1;
+        if (this.getColor() == Color.WHITE) {
+            black = 1;
+        }
+
+        int x = this.getCurrSquare().getX();
+        int y = this.getCurrSquare().getY();
+
+        if (x - 1 >= 0) {
+            Piece piece = gameBoard.getPiece(new Square(x - 1, y + black));
+            if (piece.getClass() != Empty.class) {
+                if (piece.getColor() == this.getColor()) {
+                    val += valPerPieceDefended;
+                }
+                else {
+                    val += valPerPieceAttacked;
+                }
+            }
+        }
+        if (x + 1 < 8) {
+            Piece piece = gameBoard.getPiece(new Square(x + 1, y + black));
+            if (piece.getClass() != Empty.class) {
+                if (piece.getColor() == this.getColor()) {
+                    val += valPerPieceDefended;
+                }
+                else {
+                    val += valPerPieceAttacked;
+                }
+            }
+        }
+        if (x - 1 >= 0) {
+            Piece piece = gameBoard.getPiece(new Square(x - 1, y - black));
+            if (piece.getClass() == Pawn.class) {
+                if (piece.getColor() == this.getColor()) {
+                    val += valDefendedByPawn;
+                }
+            }
+        }
+        if (x + 1 < 8) {
+            Piece piece = gameBoard.getPiece(new Square(x + 1, y - black));
+            if (piece.getClass() == Pawn.class) {
+                if (piece.getColor() == this.getColor()) {
+                    val += valPerPieceDefended;
+                }
+            }
+        }
+
+        int[] checkX = {-1, 1};
+        int[] checkY = {1, 1};
+
+        return val;
+    }
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         ArrayList<Square> validMoves = new ArrayList<>();

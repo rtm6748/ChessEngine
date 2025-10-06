@@ -5,6 +5,19 @@ public class Bishop extends Piece {
         super(square, color);
     }
 
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
+        double val = 3.4;
+        double valPerSquareMult = 0.1;
+        double valPerOtherColor = 1;
+        for (int i = 0; i < moves.size(); ++i) {
+            if (gameBoard.getPiece(moves.get(i)).getColor() != this.getColor()) {
+                val += valPerOtherColor;
+            }
+        }
+        val += moves.size() * valPerSquareMult;
+        return val;
+    }
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         Piece currentPiece = currBoard.getPiece(square);
