@@ -5,6 +5,10 @@ public class ChessGame {
     private GameBoard gameBoard;
     private Color currentColor;
 
+    public ChessGame getCopy() {
+        return new ChessGame(gameBoard, currentColor);
+    }
+
 
     public Color getCurrentColor() {
         return currentColor;
@@ -17,6 +21,11 @@ public class ChessGame {
     public ChessGame() {
         gameBoard = new GameBoard();
         currentColor = Color.WHITE;
+    }
+
+    public ChessGame(GameBoard gameboard, Color currentColor) {
+        this.gameBoard = gameboard;
+        this.currentColor = currentColor;
     }
 
     public Piece getPiece(Square square) {
