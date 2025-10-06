@@ -6,8 +6,6 @@ public class Empty extends Piece {
         super(square, color);
     }
 
-
-
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         return new ArrayList<>();
@@ -21,6 +19,7 @@ public class Empty extends Piece {
 
     @Override
     public String toString() {
-        return this.getColor() == Color.WHITE ? "■" : "□";
+        return getColor() == Color.WHITE ? "__" : "--";
+        //return this.getColor() == Color.WHITE ? "■" : "□";
     }
 }

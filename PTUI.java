@@ -4,8 +4,8 @@ public class PTUI {
 
     public static void main(String[] args) {
         ChessGame game = new ChessGame();
-        //System.out.println(game.getGameBoard());
-        System.out.printf("%-30s", game.getGameBoard());
+        System.out.println(game.getGameBoard());
+
 
         while (true) {
             System.out.println("Please enter your next move, in the form of xBegin yBegin xEnd yEnd");
@@ -26,9 +26,7 @@ public class PTUI {
                 Piece currPiece = game.getPiece(new Square(intMove[0], intMove[1]));
                 success = game.move(currPiece, new Square(intMove[2], intMove[3]));
                 if (success) {
-                    //System.out.println(game.getGameBoard());
-                    System.out.printf("%-30s", game.getGameBoard());
-                    System.out.println();
+                    System.out.println(game.getGameBoard());
                 }
                 else {
                     System.out.println(game.getGameBoard().getPiece(new Square(intMove[0], intMove[1])));

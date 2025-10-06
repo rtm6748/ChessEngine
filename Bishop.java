@@ -50,6 +50,7 @@ public class Bishop extends Piece {
 
     @Override
     public String toString() {
-        return getColor() == Color.WHITE ? "♝" : "♗";
+        return getColor() == Color.WHITE ? "WB" : "BB";
+        //return getColor() == Color.WHITE ? "♝" : "♗";
     }
 }

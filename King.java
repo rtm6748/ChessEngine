@@ -38,6 +38,7 @@ public class King extends Piece {
 
     @Override
     public String toString() {
-        return getColor() == Color.WHITE ? "♚" : "♔";
+        return getColor() == Color.WHITE ? "WK" : "BK";
+        //return getColor() == Color.WHITE ? "♚" : "♔";
     }
 }

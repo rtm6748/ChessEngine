@@ -96,6 +96,7 @@ public class Pawn extends Piece{
 
     @Override
     public String toString() {
-        return getColor() == Color.WHITE ? "♟" : "♙";
+        return getColor() == Color.WHITE ? "WP" : "BP";
+        //return getColor() == Color.WHITE ? "♟" : "♙";
     }
 }
