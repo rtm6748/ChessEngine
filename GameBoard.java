@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class GameBoard{
     private static Piece[][] board;
@@ -125,9 +127,8 @@ public class GameBoard{
                         for (Square otherSquare : otherPiecesMoves.get(otherPiece)) {
                             if (currKing.getCurrSquare().equals(otherSquare)) {
                                 ArrayList<Square> updatedMoves = piecesMoves.get(piece);
-                                piecesMoves.remove(piece, piecesMoves.get(piece));
                                 updatedMoves.remove(intSquare);
-                                piecesMoves.put(piece, updatedMoves);
+                                piecesMoves.replace(piece, piecesMoves.get(piece), updatedMoves);
                                 --intSquare;
                                 --size;
                                 invalidMove = true;
@@ -142,6 +143,13 @@ public class GameBoard{
 
                 move(piece, originalPieceSquare);
                 set(piece1, square);
+            }
+        }
+        Iterator<HashMap.Entry<Piece, ArrayList<Square>>> iterator = piecesMoves.entrySet().iterator();
+        while (iterator.hasNext()) {
+            HashMap.Entry<Piece, ArrayList<Square>> entry = iterator.next();
+            if (entry.getValue().isEmpty()) {
+                iterator.remove(); // Remove the entry if its ArrayList value is empty
             }
         }
         return piecesMoves;

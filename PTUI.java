@@ -10,10 +10,12 @@ public class PTUI {
         while (true) {
             System.out.println("Please enter your next move, in the form of xBegin yBegin xEnd yEnd");
             boolean success = false;
+            boolean winner = false;
             while (!success) {
                 if (game.getGameBoard().getValidMoves(game.getCurrentColor()).isEmpty()) {
                     Color winColor = game.getCurrentColor() == Color.WHITE ? Color.BLACK : Color.WHITE;
                     System.out.println("Game over, " +  winColor + " wins");
+                    winner = true;
                     break;
                 }
                 Scanner scanner = new Scanner(System.in);
@@ -33,6 +35,9 @@ public class PTUI {
                     System.out.println(game.getGameBoard().getPiece(new Square(intMove[2], intMove[3])));
                     System.out.println("Invalid Move Please try again");
                 }
+            }
+            if (winner) {
+                break;
             }
         }
     }
