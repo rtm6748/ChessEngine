@@ -14,6 +14,6 @@ public class Empty extends Piece {
 
     @Override
     public String toString() {
-        return getColor() == Color.WHITE ? "■" : "□";
+        return this.getColor() == Color.WHITE ? "■" : "□";
     }
 }

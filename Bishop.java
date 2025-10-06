@@ -18,12 +18,14 @@ public class Bishop extends Piece {
                     break;
                 }
                 Piece newPiece = currBoard.getPiece(newSquare);
-                if (newPiece.getColor() == this.getColor()) {
-                    break;
-                }
-                if (newPiece.getColor() != this.getColor()) {
-                    validMoves.add(newSquare);
-                    break;
+                if (newPiece.getClass() != Empty.class) {
+                    if (newPiece.getColor() == this.getColor()) {
+                        break;
+                    }
+                    if (newPiece.getColor() != this.getColor()) {
+                        validMoves.add(newSquare);
+                        break;
+                    }
                 }
                 validMoves.add(newSquare);
             }
