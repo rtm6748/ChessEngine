@@ -6,7 +6,6 @@ public class Pawn extends Piece{
     }
 
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
-        //TODO this finished along with other pieces
 
         double val = 1;
         double valPerPieceDefended = 0.4;

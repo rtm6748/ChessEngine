@@ -9,6 +9,7 @@ public class King extends Piece {
         double val = 1000;
         double edgePreference = 0.2;
         val += Math.abs(3.5 - this.getCurrSquare().getY()) * edgePreference;
+        return val;
     }
 
     @Override

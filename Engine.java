@@ -7,7 +7,11 @@ public class Engine {
     }
 
     public int evaluatePosition(GameBoard gameBoard) {
-        for (int)
+        for (int i = 0; i < GameBoard.boardSize; ++i) {
+            for (int j = 0; j < GameBoard.boardSize; ++j) {
+
+            }
+        }
     }
 
     public Move findNextMove() {

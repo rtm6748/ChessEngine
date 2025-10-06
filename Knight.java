@@ -6,7 +6,7 @@ public class Knight extends Piece {
         super(square, color);
     }
 
-    public double getValue() {
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
         double val = 3.0;
         double distanceForwardMult = 0.3;
         double centeredMult = 0.2;

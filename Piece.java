@@ -26,4 +26,5 @@ public abstract class Piece {
     }
 
     public abstract ArrayList<Square> getMoves(GameBoard currBoard, Square square);
+    public abstract double getValue(GameBoard gameBoard, ArrayList<Square> moves);
 }
