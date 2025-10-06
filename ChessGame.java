@@ -28,8 +28,11 @@ public class ChessGame {
             return false;
         }
         HashMap<Piece, ArrayList<Square>> validMoves = gameBoard.getValidMoves(Color.WHITE);
+        if (validMoves.get(piece) == null) {
+            return false;
+        }
         if (validMoves.get(piece).contains(square)) {
-            move(piece, square);
+            gameBoard.move(piece, square);
             return true;
         }
         return false;

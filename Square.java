@@ -27,4 +27,9 @@ public class Square {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "X: " + this.getX() + " Y: " + this.getY();
+    }
 }

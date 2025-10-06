@@ -58,11 +58,13 @@ public class GameBoard{
         //MayCauseCopyProblems
         board[square.getX()][square.getY()] = piece;
         board[currSquare.getX()][currSquare.getY()] = new Empty(new Square(currSquare.getX(), currSquare.getY()), (currSquare.getX() % 2 + currSquare.getY() % 2) % 2 == 0 ? Color.BLACK : Color.WHITE);
+        piece.setSquare(square);
         return replaced;
     }
 
     public void set(Piece piece, Square square) {
         board[square.getX()][square.getY()] = piece;
+        piece.setSquare(square);
     }
 
     public HashMap<Piece, ArrayList<Square>> getValidMoves(Color color) {
@@ -82,6 +84,7 @@ public class GameBoard{
         for (Piece piece : piecesMoves.keySet()) {
             int size = piecesMoves.get(piece).size();
             for (int intSquare = 0; intSquare < size; ++intSquare) {
+                Square originalPieceSquare = piece.getCurrSquare();
                 Square square = piecesMoves.get(piece).get(intSquare);
                 Piece piece1 = move(piece, square);
 
@@ -102,7 +105,7 @@ public class GameBoard{
 
                 Piece currKing = new Empty(new Square(-1, -1), Color.WHITE);
                 boolean found = false;
-                for (int i = 0; !found; ++i) {
+                for (int i = 0; !found && i < boardSize; ++i) {
                     for (int j = 0; j < boardSize; ++j) {
                         if (board[i][j].getClass() == King.class && board[i][j].getColor() == color) {
                             currKing = board[i][j];
@@ -131,7 +134,7 @@ public class GameBoard{
                     }
                 }
 
-                move(piece, piece.getCurrSquare());
+                move(piece, originalPieceSquare);
                 set(piece1, square);
             }
         }
