@@ -25,10 +25,10 @@ public class Pawn extends Piece{
         Square left = new Square(this.getCurrSquare(), -1, forwardOrBackward);
         Square right = new Square(this.getCurrSquare(), 1, forwardOrBackward);
         Color other = this.getColor() == Color.WHITE ? Color.BLACK : Color.WHITE;
-        if (isValid(forward1) && currBoard.getPiece(left).getColor() == other) {
+        if (isValid(left) && currBoard.getPiece(left).getColor() == other) {
             validMoves.add(left);
         }
-        if (isValid(forward1) && currBoard.getPiece(right).getColor() == other) {
+        if (isValid(right) && currBoard.getPiece(right).getColor() == other) {
             validMoves.add(right);
         }
         return validMoves;

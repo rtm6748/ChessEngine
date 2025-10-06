@@ -14,10 +14,10 @@ public class Rook extends Piece {
         for (int i = 0; i < dirX.length; ++i) {
             for (int iteration = 1; iteration < GameBoard.boardSize; ++iteration) {
                 Square newSquare = new Square(currentPiece.getCurrSquare(), dirX[i] * iteration, dirY[i] * iteration);
-                Piece newPiece = currBoard.getPiece(newSquare);
                 if (!isValid(newSquare)) {
                     break;
                 }
+                Piece newPiece = currBoard.getPiece(newSquare);
                 if (newPiece.getColor() == this.getColor()) {
                     break;
                 }

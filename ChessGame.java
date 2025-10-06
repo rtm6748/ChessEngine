@@ -5,9 +5,22 @@ public class ChessGame {
     private GameBoard gameBoard;
     private Color currentColor;
 
+
+    public Color getCurrentColor() {
+        return currentColor;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
+
     public ChessGame() {
         gameBoard = new GameBoard();
         currentColor = Color.WHITE;
+    }
+
+    public Piece getPiece(Square square) {
+        return gameBoard.getPiece(square);
     }
 
     public boolean move(Piece piece, Square square) {

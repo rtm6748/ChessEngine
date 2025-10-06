@@ -38,14 +38,14 @@ public class GameBoard{
         for (int i = 0; i < boardSize; ++i) {
             board[i][6] = new Pawn(new Square(i, 6), Color.BLACK);
         }
-        board[0][7] = new Rook(new Square(0, 7), Color.WHITE);
-        board[1][7] = new Knight(new Square(1, 7), Color.WHITE);
-        board[2][7] = new Bishop(new Square(2,7), Color.WHITE);
-        board[3][7] = new Queen(new Square(3, 7), Color.WHITE);
-        board[4][7] = new King(new Square(4, 7), Color.WHITE);
-        board[5][7] = new Bishop(new Square(5,7), Color.WHITE);
-        board[6][7] = new Knight(new Square(6,7), Color.WHITE);
-        board[7][7] = new Rook(new Square(7, 7), Color.WHITE);
+        board[0][7] = new Rook(new Square(0, 7), Color.BLACK);
+        board[1][7] = new Knight(new Square(1, 7), Color.BLACK);
+        board[2][7] = new Bishop(new Square(2,7), Color.BLACK);
+        board[3][7] = new Queen(new Square(3, 7), Color.BLACK);
+        board[4][7] = new King(new Square(4, 7), Color.BLACK);
+        board[5][7] = new Bishop(new Square(5,7), Color.BLACK);
+        board[6][7] = new Knight(new Square(6,7), Color.BLACK);
+        board[7][7] = new Rook(new Square(7, 7), Color.BLACK);
     }
 
     public Piece getPiece(Square square) {
@@ -140,9 +140,9 @@ public class GameBoard{
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < boardSize; ++i) {
+        for (int i = boardSize - 1; i >= 0; --i) {
             for (int j = 0; j < boardSize; ++j) {
-                stringBuilder.append(board[i][j].toString());
+                stringBuilder.append(board[j][i].toString());
                 stringBuilder.append(' ');
             }
             stringBuilder.append('\n');
