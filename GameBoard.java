@@ -85,6 +85,11 @@ public class GameBoard{
             int size = piecesMoves.get(piece).size();
             for (int intSquare = 0; intSquare < size; ++intSquare) {
                 Square originalPieceSquare = piece.getCurrSquare();
+                /*System.out.println(piecesMoves);
+                System.out.println(piece);
+                System.out.println(piecesMoves.get(piece));
+                System.out.println(size);*/
+
                 Square square = piecesMoves.get(piece).get(intSquare);
                 Piece piece1 = move(piece, square);
 
@@ -93,7 +98,7 @@ public class GameBoard{
                 for (int i = 0; i < boardSize; ++i) {
                     for (int j = 0; j < boardSize; ++j) {
                         Color otherColor = Color.WHITE == color ? Color.BLACK : Color.WHITE;
-                        if (board[i][j].getColor() == otherColor) {
+                        if (board[i][j].getColor() == otherColor && board[i][j].getClass() != Empty.class) {
                             otherPieces.add(board[i][j]);
                         }
                     }
@@ -116,14 +121,15 @@ public class GameBoard{
                 }
                 boolean invalidMove = false;
                 for (Piece otherPiece : otherPiecesMoves.keySet()) {
-                    if (piecesMoves.get(otherPiece) != null) {
-                        for (Square otherSquare : piecesMoves.get(otherPiece)) {
-                            if (currKing.getCurrSquare() == otherSquare) {
+                    if (otherPiecesMoves.get(otherPiece) != null) {
+                        for (Square otherSquare : otherPiecesMoves.get(otherPiece)) {
+                            if (currKing.getCurrSquare().equals(otherSquare)) {
                                 ArrayList<Square> updatedMoves = piecesMoves.get(piece);
                                 piecesMoves.remove(piece, piecesMoves.get(piece));
                                 updatedMoves.remove(intSquare);
                                 piecesMoves.put(piece, updatedMoves);
                                 --intSquare;
+                                --size;
                                 invalidMove = true;
                                 break;
                             }
