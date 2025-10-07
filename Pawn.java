@@ -5,8 +5,11 @@ public class Pawn extends Piece{
         super(square, color);
     }
 
-    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
+    public Pawn getCopy() {
+        return new Pawn(this.getCurrSquare(), this.getColor());
+    }
 
+    public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
         double val = 1;
         double valPerPieceDefended = 0.4;
         double valPerPieceAttacked = 0.3;
@@ -58,9 +61,6 @@ public class Pawn extends Piece{
             }
         }
 
-        int[] checkX = {-1, 1};
-        int[] checkY = {1, 1};
-
         return val;
     }
 
@@ -77,7 +77,7 @@ public class Pawn extends Piece{
             Square forward2 = new Square(this.getCurrSquare(), 0, 2 * forwardOrBackward);
             boolean onStart = this.getCurrSquare().getY() == 1 && this.getColor() == Color.WHITE ||
                               this.getCurrSquare().getY() == 6 && this.getColor() == Color.BLACK;
-            if (isValid(forward1) && currBoard.getPiece(forward2).getClass() == Empty.class && onStart) {
+            if (isValid(forward1) && onStart && currBoard.getPiece(forward2).getClass() == Empty.class) {
                 validMoves.add(forward2);
             }
         }

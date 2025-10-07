@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Engine {
-    private ChessGame chessGame;
+    private final ChessGame chessGame;
 
     public Engine(ChessGame chessGame) {
         this.chessGame = chessGame;
@@ -30,8 +30,66 @@ public class Engine {
         return new PositionValue(currentColorValue, otherColorValue);
     }
 
-
     public Move findNextMove() {
+        return findNextMove(this.chessGame, 1);
+    }
+    public Move findNextMove(ChessGame chessGame, int depth) {
+        double bestValue = Double.NEGATIVE_INFINITY;
+        Move bestMove = null;
+
+        HashMap<Piece, ArrayList<Square>> moves = chessGame.getGameBoard().getValidMoves(chessGame.getCurrentColor());
+
+        for (Piece piece : moves.keySet()) {
+            for (Square square : moves.get(piece)) {
+                ChessGame newGame = chessGame.getCopy();
+                newGame.move(piece, square);
+
+                double value = minimax(newGame, depth - 1, false);  // opponent's turn
+
+                if (value > bestValue) {
+                    bestValue = value;
+                    bestMove = new Move(piece, square);
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+    private double minimax(ChessGame game, int depth, boolean maximizingPlayer) {
+        if (depth == 0) {
+            return evaluatePosition(game).getDifference();
+        }
+
+        HashMap<Piece, ArrayList<Square>> moves = game.getGameBoard().getValidMoves(game.getCurrentColor());
+
+        // Handle checkmate or stalemate
+        if (moves.isEmpty()) {
+            return evaluatePosition(game).getDifference();
+        }
+
+        double bestValue = maximizingPlayer ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+
+        for (Piece piece : moves.keySet()) {
+            for (Square square : moves.get(piece)) {
+                ChessGame newGame = game.getCopy();
+                newGame.move(piece, square);
+
+                double eval = minimax(newGame, depth - 1, !maximizingPlayer);
+
+                if (maximizingPlayer) {
+                    bestValue = Math.max(bestValue, eval);
+                } else {
+                    bestValue = Math.min(bestValue, eval);
+                }
+            }
+        }
+
+        return bestValue;
+    }
+
+
+    /*public Move findNextMove() {
         return findNextMove(this.chessGame, null, 5, false, false);
     }
     public Move findNextMove(ChessGame chessGame, Move firstMove, int depth, boolean low1, boolean low2) {
@@ -69,5 +127,6 @@ public class Engine {
             }
         }
         return new Move(highestPiece, highestSquare);
-    }
+    }*/
+
 }

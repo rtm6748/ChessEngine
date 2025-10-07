@@ -8,15 +8,21 @@ public class Queen extends Piece {
 
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
         double val = 9;
-        double valPerSquareMult = 0.1;
+        double valPerSquareMulti = 0.1;
         double valPerOtherColor = 1;
-        for (int i = 0; i < moves.size(); ++i) {
-            if (gameBoard.getPiece(moves.get(i)).getColor() != this.getColor()) {
-                val += valPerOtherColor;
+        if (moves != null) {
+            for (Square move : moves) {
+                if (gameBoard.getPiece(move).getColor() != this.getColor()) {
+                    val += valPerOtherColor;
+                }
             }
+            val += moves.size() * valPerSquareMulti;
         }
-        val += moves.size() * valPerSquareMult;
         return val;
+    }
+
+    public Queen getCopy() {
+        return new Queen(this.getCurrSquare(), this.getColor());
     }
 
     @Override

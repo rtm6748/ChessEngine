@@ -10,13 +10,19 @@ public class Rook extends Piece {
         double val = 5;
         double valPerSquareMult = 0.1;
         double valPerOtherColor = 1;
-        for (int i = 0; i < moves.size(); ++i) {
-            if (gameBoard.getPiece(moves.get(i)).getColor() != this.getColor()) {
-                val += valPerOtherColor;
+        if (moves != null) {
+            for (Square move : moves) {
+                if (gameBoard.getPiece(move).getColor() != this.getColor()) {
+                    val += valPerOtherColor;
+                }
             }
+            val += moves.size() * valPerSquareMult;
         }
-        val += moves.size() * valPerSquareMult;
         return val;
+    }
+
+    public Rook getCopy() {
+        return new Rook(this.getCurrSquare(), this.getColor());
     }
 
     @Override

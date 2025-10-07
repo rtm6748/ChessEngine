@@ -12,6 +12,10 @@ public class King extends Piece {
         return val;
     }
 
+    public King getCopy() {
+        return new King(this.getCurrSquare(), this.getColor());
+    }
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         ArrayList<Square> validMoves = new ArrayList<>();

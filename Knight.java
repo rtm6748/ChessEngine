@@ -6,6 +6,10 @@ public class Knight extends Piece {
         super(square, color);
     }
 
+    public Knight getCopy() {
+        return new Knight(this.getCurrSquare(), this.getColor());
+    }
+
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
         double val = 3.0;
         double distanceForwardMult = 0.3;
@@ -26,12 +30,12 @@ public class Knight extends Piece {
         int[] MovesX = {-2, -1, 1, 2};
         int[] MovesY = {-2, -1, 1, 2};
         ArrayList<Square> validMoves = new ArrayList<>();
-        for (int i = 0; i < MovesX.length; ++i) {
-            for (int j = 0; j < MovesY.length; ++j) {
-                if (Math.abs(MovesX[i]) == Math.abs(MovesY[j])) {
+        for (int movesX : MovesX) {
+            for (int i : MovesY) {
+                if (Math.abs(movesX) == Math.abs(i)) {
                     continue;
                 }
-                Square newSquare = new Square(square, MovesX[i], MovesY[j]);
+                Square newSquare = new Square(square, movesX, i);
                 if (!isValid(newSquare)) {
                     continue;
                 }

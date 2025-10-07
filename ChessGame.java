@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChessGame {
-    private GameBoard gameBoard;
+    private static GameBoard gameBoard;
     private Color currentColor;
 
     public ChessGame getCopy() {
-        return new ChessGame(gameBoard, currentColor);
+        return new ChessGame(gameBoard.getCopy(), currentColor);
     }
 
 
@@ -24,7 +24,7 @@ public class ChessGame {
     }
 
     public ChessGame(GameBoard gameboard, Color currentColor) {
-        this.gameBoard = gameboard;
+        gameBoard = gameboard;
         this.currentColor = currentColor;
     }
 

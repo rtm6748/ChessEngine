@@ -1,23 +1,33 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class GameBoard{
-    private static Piece[][] board;
+    private final Piece[][] board;
     public static final int boardSize = 8;
 
-    private static boolean blackKingMove = false;
+/*    private static boolean blackKingMove = false;
     private static boolean blackARookMove = false;
     private static boolean blackHRookMove = false;
     private static boolean whiteKingMove = false;
     private static boolean whiteARookMove = false;
-    private static boolean whiteHRookMove = false;
+    private static boolean whiteHRookMove = false;*/
 
 
     public GameBoard() {
         board = new Piece[boardSize][boardSize];
         standardSetup();
+    }
+    public GameBoard(Piece[][] board) {
+        this.board = new Piece[board.length][board[0].length];
+        for (int i = 0; i < board.length; ++i) {
+            for (int j = 0; j < board[i].length; ++j) {
+                this.board[i][j] = board[i][j].getCopy();
+            }
+        }
+    }
+
+    public GameBoard getCopy() {
+        return new GameBoard(this.board);
     }
 
     public void standardSetup() {
@@ -145,13 +155,7 @@ public class GameBoard{
                 set(piece1, square);
             }
         }
-        Iterator<HashMap.Entry<Piece, ArrayList<Square>>> iterator = piecesMoves.entrySet().iterator();
-        while (iterator.hasNext()) {
-            HashMap.Entry<Piece, ArrayList<Square>> entry = iterator.next();
-            if (entry.getValue().isEmpty()) {
-                iterator.remove(); // Remove the entry if its ArrayList value is empty
-            }
-        }
+        piecesMoves.entrySet().removeIf(entry -> entry.getValue().isEmpty());
         //Add castles
         //Add en passant
 

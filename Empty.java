@@ -6,6 +6,10 @@ public class Empty extends Piece {
         super(square, color);
     }
 
+    public Empty getCopy() {
+        return new Empty(this.getCurrSquare(), this.getColor());
+    }
+
     @Override
     public ArrayList<Square> getMoves(GameBoard currBoard, Square square) {
         return new ArrayList<>();

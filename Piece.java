@@ -9,6 +9,8 @@ public abstract class Piece {
         this.square = square;
     }
 
+    public abstract Piece getCopy();
+
     public void setSquare(Square square) {
         this.square = square;
     }
