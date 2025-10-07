@@ -152,6 +152,11 @@ public class GameBoard{
                 iterator.remove(); // Remove the entry if its ArrayList value is empty
             }
         }
+        //Add castles
+        //Add en passant
+
+
+
         return piecesMoves;
     }
 

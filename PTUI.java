@@ -6,7 +6,6 @@ public class PTUI {
         ChessGame game = new ChessGame();
         System.out.println(game.getGameBoard());
 
-
         while (true) {
             System.out.println("Please enter your next move, in the form of xBegin yBegin xEnd yEnd");
             boolean success = false;
