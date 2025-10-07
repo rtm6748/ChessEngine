@@ -7,7 +7,7 @@ public class Empty extends Piece {
     }
 
     public Empty getCopy() {
-        return new Empty(this.getCurrSquare(), this.getColor());
+        return new Empty(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     @Override

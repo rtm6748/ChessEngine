@@ -6,7 +6,7 @@ public class Pawn extends Piece{
     }
 
     public Pawn getCopy() {
-        return new Pawn(this.getCurrSquare(), this.getColor());
+        return new Pawn(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {

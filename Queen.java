@@ -22,7 +22,7 @@ public class Queen extends Piece {
     }
 
     public Queen getCopy() {
-        return new Queen(this.getCurrSquare(), this.getColor());
+        return new Queen(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     @Override

@@ -7,7 +7,7 @@ public class Knight extends Piece {
     }
 
     public Knight getCopy() {
-        return new Knight(this.getCurrSquare(), this.getColor());
+        return new Knight(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {

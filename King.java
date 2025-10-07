@@ -13,7 +13,7 @@ public class King extends Piece {
     }
 
     public King getCopy() {
-        return new King(this.getCurrSquare(), this.getColor());
+        return new King(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     @Override

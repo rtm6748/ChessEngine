@@ -22,7 +22,7 @@ public class Rook extends Piece {
     }
 
     public Rook getCopy() {
-        return new Rook(this.getCurrSquare(), this.getColor());
+        return new Rook(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     @Override

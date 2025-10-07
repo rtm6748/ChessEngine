@@ -21,7 +21,7 @@ public class Bishop extends Piece {
     }
 
     public Bishop getCopy() {
-        return new Bishop(this.getCurrSquare(), this.getColor());
+        return new Bishop(new Square(this.getCurrSquare().getX(), this.getCurrSquare().getY()), this.getColor());
     }
 
     @Override
