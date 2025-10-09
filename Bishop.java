@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bishop extends Piece {
     public Bishop(Square square, Color color) {
@@ -6,7 +7,7 @@ public class Bishop extends Piece {
     }
 
     public double getValue(GameBoard gameBoard, ArrayList<Square> moves) {
-        double val = 3.4;
+        double val = 3.2;
         double valPerSquareMult = 0.1;
         double valPerOtherColor = 1;
         if (moves != null) {
@@ -58,5 +59,19 @@ public class Bishop extends Piece {
     public String toString() {
         return getColor() == Color.WHITE ? "WB" : "BB";
         //return getColor() == Color.WHITE ? "♝" : "♗";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Bishop bishop) {
+            return this.getCurrSquare().equals(bishop.getCurrSquare()) && this.getColor() == bishop.getColor();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        Square s = this.getCurrSquare();
+        return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
     }
 }

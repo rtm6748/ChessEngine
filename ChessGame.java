@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChessGame {
-    private static GameBoard gameBoard;
+    private GameBoard gameBoard;
     private Color currentColor;
 
     public ChessGame getCopy() {
         return new ChessGame(gameBoard.getCopy(), currentColor);
     }
-
 
     public Color getCurrentColor() {
         return currentColor;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Empty extends Piece {
 
@@ -25,5 +26,19 @@ public class Empty extends Piece {
     public String toString() {
         return getColor() == Color.WHITE ? "__" : "--";
         //return this.getColor() == Color.WHITE ? "■" : "□";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Empty empty) {
+            return this.getCurrSquare().equals(empty.getCurrSquare()) && this.getColor() == empty.getColor();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        Square s = this.getCurrSquare();
+        return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
     }
 }

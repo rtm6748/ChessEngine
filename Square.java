@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Square {
     private final int x;
     private final int y;
@@ -19,6 +21,10 @@ public class Square {
         return y;
     }
 
+    public Square getCopy() {
+        return new Square(this.getX(), this.getY());
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -31,5 +37,10 @@ public class Square {
     @Override
     public String toString() {
         return "X: " + this.getX() + " Y: " + this.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Engine {
-    private final ChessGame chessGame;
+    private final ChessGame currentBoard;
 
     public Engine(ChessGame chessGame) {
-        this.chessGame = chessGame;
+        this.currentBoard = chessGame;
     }
 
     public PositionValue evaluatePosition(ChessGame chessGame) {
@@ -31,7 +31,7 @@ public class Engine {
     }
 
     public Move findNextMove() {
-        return findNextMove(this.chessGame, 1);
+        return findNextMove(this.currentBoard, 1);
     }
     public Move findNextMove(ChessGame chessGame, int depth) {
         double bestValue = Double.NEGATIVE_INFINITY;
@@ -42,7 +42,8 @@ public class Engine {
         for (Piece piece : moves.keySet()) {
             for (Square square : moves.get(piece)) {
                 ChessGame newGame = chessGame.getCopy();
-                newGame.move(piece, square);
+                Piece copiedPiece = newGame.getGameBoard().getPiece(piece.getCurrSquare());
+                newGame.move(copiedPiece, square);
 
                 double value = minimax(newGame, depth - 1, false);  // opponent's turn
 
@@ -73,7 +74,8 @@ public class Engine {
         for (Piece piece : moves.keySet()) {
             for (Square square : moves.get(piece)) {
                 ChessGame newGame = game.getCopy();
-                newGame.move(piece, square);
+                Piece copiedPiece = newGame.getGameBoard().getPiece(piece.getCurrSquare());
+                newGame.move(copiedPiece, square);
 
                 double eval = minimax(newGame, depth - 1, !maximizingPlayer);
 

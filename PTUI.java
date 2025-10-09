@@ -20,6 +20,12 @@ public class PTUI {
                     System.out.println("Please enter your next move, in the form of xBegin yBegin xEnd yEnd");
                     Scanner scanner = new Scanner(System.in);
                     String nextMove = scanner.nextLine();
+                    if (nextMove.equals("eng")) {
+                        Engine engine = new Engine(game);
+                        Move move = engine.findNextMove();
+                        game.move(move.getPiece(), move.getSquare());
+                        break;
+                    }
                     String[] nextMoveSplit = nextMove.strip().split("\\s+");
                     int[] intMove = {0, 0, 0, 0};
                     for (int i = 0; i < 4; ++i) {
@@ -39,6 +45,7 @@ public class PTUI {
                     Engine engine = new Engine(game);
                     Move move = engine.findNextMove();
                     game.move(move.getPiece(), move.getSquare());
+                    System.out.println(game.getGameBoard());
                 }
             }
             if (winner) {

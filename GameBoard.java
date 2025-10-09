@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.IdentityHashMap;
 
 public class GameBoard{
     private final Piece[][] board;
@@ -137,6 +139,7 @@ public class GameBoard{
                         for (Square otherSquare : otherPiecesMoves.get(otherPiece)) {
                             if (currKing.getCurrSquare().equals(otherSquare)) {
                                 ArrayList<Square> updatedMoves = piecesMoves.get(piece);
+
                                 updatedMoves.remove(intSquare);
                                 piecesMoves.replace(piece, piecesMoves.get(piece), updatedMoves);
                                 --intSquare;
@@ -158,8 +161,6 @@ public class GameBoard{
         piecesMoves.entrySet().removeIf(entry -> entry.getValue().isEmpty());
         //Add castles
         //Add en passant
-
-
 
         return piecesMoves;
     }

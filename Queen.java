@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Queen extends Piece {
     public Queen(Square square, Color color) {
@@ -59,5 +60,19 @@ public class Queen extends Piece {
     public String toString() {
         return getColor() == Color.WHITE ? "WQ" : "BQ";
         //return getColor() == Color.WHITE ? "♛" : "♕";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Queen queen) {
+            return this.getCurrSquare().equals(queen.getCurrSquare()) && this.getColor() == queen.getColor();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        Square s = this.getCurrSquare();
+        return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
     }
 }

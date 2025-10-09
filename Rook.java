@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Rook extends Piece {
     public Rook(Square square, Color color) {
@@ -59,5 +60,19 @@ public class Rook extends Piece {
     public String toString() {
         return getColor() == Color.WHITE ? "WR" : "BR";
         //return getColor() == Color.WHITE ? "♜" : "♖";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Rook rook) {
+            return this.getCurrSquare().equals(rook.getCurrSquare()) && this.getColor() == rook.getColor();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        Square s = this.getCurrSquare();
+        return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
     }
 }
