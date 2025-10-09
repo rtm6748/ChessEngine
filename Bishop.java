@@ -61,7 +61,7 @@ public class Bishop extends Piece {
         //return getColor() == Color.WHITE ? "♝" : "♗";
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object obj) {
         if (obj instanceof Bishop bishop) {
             return this.getCurrSquare().equals(bishop.getCurrSquare()) && this.getColor() == bishop.getColor();
@@ -73,5 +73,15 @@ public class Bishop extends Piece {
     public int hashCode() {
         Square s = this.getCurrSquare();
         return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
     }
 }

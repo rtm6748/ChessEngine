@@ -28,7 +28,7 @@ public class Empty extends Piece {
         //return this.getColor() == Color.WHITE ? "■" : "□";
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
         if (obj instanceof Empty empty) {
             return this.getCurrSquare().equals(empty.getCurrSquare()) && this.getColor() == empty.getColor();
@@ -40,5 +40,15 @@ public class Empty extends Piece {
     public int hashCode() {
         Square s = this.getCurrSquare();
         return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
     }
 }

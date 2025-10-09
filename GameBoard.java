@@ -69,7 +69,6 @@ public class GameBoard{
     public Piece move(Piece piece, Square square) {
         Square currSquare = piece.getCurrSquare();
         Piece replaced = board[square.getX()][square.getY()];
-        //MayCauseCopyProblems
         board[square.getX()][square.getY()] = piece;
         board[currSquare.getX()][currSquare.getY()] = new Empty(new Square(currSquare.getX(), currSquare.getY()), (currSquare.getX() % 2 + currSquare.getY() % 2) % 2 == 0 ? Color.BLACK : Color.WHITE);
         piece.setSquare(square);
@@ -81,64 +80,64 @@ public class GameBoard{
         piece.setSquare(square);
     }
 
-    public HashMap<Piece, ArrayList<Square>> getValidMoves(Color color) {
-        HashMap<Piece, ArrayList<Square>> piecesMoves = new HashMap<>();
-        ArrayList<Piece> currPieces = new ArrayList<>();
+    private ArrayList<Piece> getPieces(Color color) {
+        ArrayList<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < boardSize; ++i) {
             for (int j = 0; j < boardSize; ++j) {
                 if (board[i][j].getColor() == color) {
-                    currPieces.add(board[i][j]);
+                    pieces.add(board[i][j]);
                 }
             }
         }
+        return pieces;
+    }
+
+    private HashMap<Piece, ArrayList<Square>> getPossibleMoves(Color color) {
+        HashMap<Piece, ArrayList<Square>> piecesMoves = new HashMap<>();
+        ArrayList<Piece> currPieces = this.getPieces(color);
         for (Piece currPiece : currPieces) {
             piecesMoves.put(currPiece, currPiece.getMoves(this, currPiece.getCurrSquare()));
         }
+        return piecesMoves;
+    }
+
+    private Piece getKing(Color color) {
+        for (int i = 0; i < boardSize; ++i) {
+            for (int j = 0; j < boardSize; ++j) {
+                if (board[i][j].getClass() == King.class && board[i][j].getColor() == color) {
+                    return board[i][j];
+                }
+            }
+        }
+        return new Empty(new Square(-1, -1), Color.WHITE);
+    }
+
+    public HashMap<Piece, ArrayList<Square>> getValidMoves(Color color) {
+        HashMap<Piece, ArrayList<Square>> piecesMoves = getPossibleMoves(color);
 
         for (Piece piece : piecesMoves.keySet()) {
             int size = piecesMoves.get(piece).size();
             for (int intSquare = 0; intSquare < size; ++intSquare) {
                 Square originalPieceSquare = piece.getCurrSquare();
-                /*System.out.println(piecesMoves);
-                System.out.println(piece);
-                System.out.println(piecesMoves.get(piece));
-                System.out.println(size);*/
 
                 Square square = piecesMoves.get(piece).get(intSquare);
                 Piece piece1 = move(piece, square);
 
-                HashMap<Piece, ArrayList<Square>> otherPiecesMoves = new HashMap<>();
-                ArrayList<Piece> otherPieces = new ArrayList<>();
-                for (int i = 0; i < boardSize; ++i) {
-                    for (int j = 0; j < boardSize; ++j) {
-                        Color otherColor = Color.WHITE == color ? Color.BLACK : Color.WHITE;
-                        if (board[i][j].getColor() == otherColor && board[i][j].getClass() != Empty.class) {
-                            otherPieces.add(board[i][j]);
-                        }
-                    }
-                }
+                HashMap<Piece, ArrayList<Square>> otherPiecesMoves = this.getPossibleMoves(color == Color.WHITE ? Color.BLACK : Color.WHITE);
 
-                for (Piece otherPiece : otherPieces) {
-                    otherPiecesMoves.put(otherPiece, otherPiece.getMoves(this, otherPiece.getCurrSquare()));
-                }
+                Piece currKing = this.getKing(color);
 
-                Piece currKing = new Empty(new Square(-1, -1), Color.WHITE);
-                boolean found = false;
-                for (int i = 0; !found && i < boardSize; ++i) {
-                    for (int j = 0; j < boardSize; ++j) {
-                        if (board[i][j].getClass() == King.class && board[i][j].getColor() == color) {
-                            currKing = board[i][j];
-                            found = true;
-                            break;
-                        }
-                    }
-                }
                 boolean invalidMove = false;
                 for (Piece otherPiece : otherPiecesMoves.keySet()) {
-                    if (otherPiecesMoves.get(otherPiece) != null) {
+                    if (!otherPiecesMoves.get(otherPiece).isEmpty()) {
                         for (Square otherSquare : otherPiecesMoves.get(otherPiece)) {
                             if (currKing.getCurrSquare().equals(otherSquare)) {
                                 ArrayList<Square> updatedMoves = piecesMoves.get(piece);
+
+                                if (!piecesMoves.containsKey(piece)) {
+                                    System.out.println("Key not found for: " + piece);
+                                    System.out.println("All keys: " + piecesMoves.keySet());
+                                }
 
                                 updatedMoves.remove(intSquare);
                                 piecesMoves.replace(piece, piecesMoves.get(piece), updatedMoves);

@@ -24,6 +24,7 @@ public class PTUI {
                         Engine engine = new Engine(game);
                         Move move = engine.findNextMove();
                         game.move(move.getPiece(), move.getSquare());
+                        System.out.println(game.getGameBoard());
                         break;
                     }
                     String[] nextMoveSplit = nextMove.strip().split("\\s+");

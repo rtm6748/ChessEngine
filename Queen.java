@@ -62,7 +62,7 @@ public class Queen extends Piece {
         //return getColor() == Color.WHITE ? "♛" : "♕";
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) {
         if (obj instanceof Queen queen) {
             return this.getCurrSquare().equals(queen.getCurrSquare()) && this.getColor() == queen.getColor();
@@ -74,5 +74,17 @@ public class Queen extends Piece {
     public int hashCode() {
         Square s = this.getCurrSquare();
         return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
+    }*/
+
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
     }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
+    }
+
 }

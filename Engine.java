@@ -31,7 +31,7 @@ public class Engine {
     }
 
     public Move findNextMove() {
-        return findNextMove(this.currentBoard, 1);
+        return findNextMove(this.currentBoard, 3);
     }
     public Move findNextMove(ChessGame chessGame, int depth) {
         double bestValue = Double.NEGATIVE_INFINITY;

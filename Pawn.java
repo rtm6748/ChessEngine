@@ -101,7 +101,7 @@ public class Pawn extends Piece{
         //return getColor() == Color.WHITE ? "♟" : "♙";
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object obj) {
         if (obj instanceof Pawn pawn) {
             return this.getCurrSquare().equals(pawn.getCurrSquare()) && this.getColor() == pawn.getColor();
@@ -113,5 +113,16 @@ public class Pawn extends Piece{
     public int hashCode() {
         Square s = this.getCurrSquare();
         return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
+    }*/
+
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
     }
 }

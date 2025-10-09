@@ -62,7 +62,7 @@ public class Rook extends Piece {
         //return getColor() == Color.WHITE ? "♜" : "♖";
     }
 
-    @Override
+   /* @Override
     public boolean equals(Object obj) {
         if (obj instanceof Rook rook) {
             return this.getCurrSquare().equals(rook.getCurrSquare()) && this.getColor() == rook.getColor();
@@ -74,5 +74,15 @@ public class Rook extends Piece {
     public int hashCode() {
         Square s = this.getCurrSquare();
         return Objects.hash(this.getColor(), this.getClass()) + s.hashCode();
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return System.identityHashCode(this);
     }
 }
