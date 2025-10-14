@@ -1,0 +1,60 @@
+# ====================================
+# Global Ignores (OS & temp files)
+# ====================================
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ====================================
+# JavaVersion (IntelliJ + Gradle/Maven)
+# ====================================
+/JavaVersion/.idea/
+/JavaVersion/*.iml
+/JavaVersion/out/
+/JavaVersion/build/
+/JavaVersion/.gradle/
+/JavaVersion/.vscode/
+/JavaVersion/.classpath
+/JavaVersion/.project
+/JavaVersion/.settings/
+/JavaVersion/target/
+
+# Gradle
+/JavaVersion/.gradle/
+/JavaVersion/build/
+
+# Maven
+/JavaVersion/target/
+
+# ====================================
+# CppVersion (Visual Studio 2022)
+/CppVersion/.vs/
+/CppVersion/*.vcxproj.user
+/CppVersion/*.VC.db
+/CppVersion/*.VC.opendb
+/CppVersion/x64/
+/CppVersion/Debug/
+/CppVersion/Release/
+/CppVersion/ipch/
+/CppVersion/*.sdf
+/CppVersion/*.opensdf
+/CppVersion/*.ncb
+/CppVersion/*.obj
+/CppVersion/*.pch
+/CppVersion/*.idb
+/CppVersion/*.ilk
+/CppVersion/*.exe
+/CppVersion/*.log
+/CppVersion/*.tlog
+/CppVersion/*.pdb
+
+# ====================================
+# Git & Misc
+# ====================================
+# Ignore local Git config if present
+.gitconfig.local
